@@ -1,0 +1,20 @@
+Sorting a DNS transfer file:
+sort -t . -k 6,6n dns_axfr_results.txt
+# The field 6,6n applies to how far the IP address is into each line.
+Example:
+example.site.local has address 11.12.1.8
+example2.site.local has address 11.12.1.5
+example3.site.local has address 11.12.1.20
+example4.site.local has address 11.12.1.2
+
+$ sort -t . -k 6,6n dns_axfr_results.txt
+
+example4.site.local has address 11.12.1.2
+example2.site.local has address 11.12.1.5
+example.site.local has address 11.12.1.8
+example3.site.local has address 11.12.1.20
+
+-t . : Set field to "." which is what our IPs contain.
+-k 6,6n : In our example text file, the IP addresses start in the sixth field of the row.
+-n : Tells *sort* to use numeric order. 
+nr : If you wanted reverse numeric order, with the highest IP first.
