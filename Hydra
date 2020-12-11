@@ -1,0 +1,21 @@
+Using Hydra for brute forcing
+
+hydra -l username_goes_here -P /path/to/wordlist/here.txt rdp://IP.adr.he.re -s port_number
+
+Example:
+hydra -t 1 -f -l carla -P /usr/share/wordlists/rockyou.txt rdp://10.10.10.1
+
+-t 1 : 1 is recommended for vm, though higher values can be used. Similar to nmap, it's how aggressive Hydra is as far as resource usage.
+
+-V : Verbose - displays line by line, which I don't prefer but may be useful
+
+-f : Stop after a successful login
+
+-l : username goes after -l
+(For brute forcing a username, -L can be used with a wordlist ex -L /usr/share/wordlists/users.txt
+
+-P wordlist.txt : Specify the wordlist you want Hydra to use. By default on Kali Linux this is located in the path /usr/share/wordlists.
+
+rdp://10.10.10.1 : Tells Hydra it's attacking RDP at the specified address. I often use Hydra for SSH as well. (ssh://ex.ip.1.1)
+
+-s port_number : Set the port number the service is running on, for example SSH is likely TCP port 22
